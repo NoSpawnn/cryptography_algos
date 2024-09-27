@@ -1,8 +1,7 @@
 package ciphers
 
-
 object CaesarShift {
-    private val DEFAULT_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    private const val DEFAULT_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     fun encrypt(text: String, offset: Int, alphabet: String = DEFAULT_ALPHABET): String = text.map { c ->
         if (c.isUpperCase()) c.shiftBy(offset, alphabet)
