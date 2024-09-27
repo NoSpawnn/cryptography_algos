@@ -16,5 +16,8 @@ object CaesarShift {
         encrypt(text, -offset, alphabet)
 
     private fun Char.shiftBy(n: Int, alphabet: String): Char =
-        alphabet[(alphabet.indexOf(this, ignoreCase = true) + n) % alphabet.length]
+        // This was originally `(alphabet.indexOf(this, ignoreCase = true) + n) % alphabet.length`,
+        // but that failed with negative keys (i.e. decrypt). I don't know why this altered version works,
+        // but it does
+        alphabet[(alphabet.indexOf(this, ignoreCase = true) + n).mod(alphabet.length)]
 }
