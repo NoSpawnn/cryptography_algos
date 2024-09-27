@@ -19,13 +19,15 @@ object Vigenere {
 
     private fun Char.shift(keyChar: Char, alphabet: String, invert: Boolean = false): Char =
         if (invert) // Decrypt
-            alphabet[(alphabet.indexOf(this, ignoreCase = true) - alphabet.indexOf(
-                keyChar, ignoreCase = true
-            )).mod(alphabet.length)]
+            alphabet[
+                (alphabet.indexOf(this, ignoreCase = true) - alphabet.indexOf(keyChar, ignoreCase = true))
+                    .mod(alphabet.length)
+            ]
         else // Encrypt
-            alphabet[(alphabet.indexOf(this, ignoreCase = true) + alphabet.indexOf(
-                keyChar, ignoreCase = true
-            )).mod(alphabet.length)]
+            alphabet[
+                (alphabet.indexOf(this, ignoreCase = true) + alphabet.indexOf(keyChar, ignoreCase = true))
+                    .mod(alphabet.length)
+            ]
 
     private fun String.repeatAndTruncateToLength(other: String): String =
         if (this.length > other.length) this.substring(0, other.length)
