@@ -5,14 +5,14 @@ object Vigenere {
 
     fun encrypt(text: String, key: String): String =
         text
-            .zip(key.repeatAndTruncateToLength(text))
+            .zip(key.repeatAndTruncateToLength(text.length))
             .map { (t, k) ->
                 t.shift(k, ALPHABET)
             }.joinToString("")
 
     fun decrypt(text: String, key: String): String =
         text
-            .zip(key.repeatAndTruncateToLength(text))
+            .zip(key.repeatAndTruncateToLength(text.length))
             .map { (t, k) ->
                 t.shift(k, ALPHABET, invert = true)
             }.joinToString("")
@@ -29,7 +29,7 @@ object Vigenere {
                     .mod(alphabet.length)
             ]
 
-    private fun String.repeatAndTruncateToLength(other: String): String =
-        if (this.length > other.length) this.substring(0, other.length)
-        else this.repeat((other.length / this.length) + 1).substring(0, other.length)
+    private fun String.repeatAndTruncateToLength(otherLen: Int): String =
+        if (this.length > otherLen) this.substring(0, otherLen)
+        else this.repeat((otherLen / this.length) + 1).substring(0, otherLen)
 }
